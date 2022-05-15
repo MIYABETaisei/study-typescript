@@ -1,31 +1,23 @@
 import type { NextPage } from "next";
 
-// ダメ
-// let obj1: {} = {};
-// let obj2: object = {};
-// 推奨
+type Animals = "dog" | "cat";
+
 type Foo = {
-  a: number;
-  b: string;
-};
-type Bar = {
-  a: string;
-  c: boolean;
-};
-
-type FooBar = Foo | Bar;
-
-const test: FooBar = {
-  a: "",
-  b: "",
-  c: true,
-};
-
-if ("b" in test) {
-  test.a.toFixed;
-} else {
-  test.a.length;
+  [key in Animals]: number;
 }
+
+// interface Foo {
+//   a: number;
+// }
+
+// interface Bar extends Foo {
+//   a: string;
+// }
+const foo: Foo = {
+  dog: 1,
+  cat: 2,
+};
+
 const Home: NextPage = () => {
   return <div>test</div>;
 };
