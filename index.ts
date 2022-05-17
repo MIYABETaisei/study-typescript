@@ -1,10 +1,17 @@
-const foo = <T extends string | number>(arg: T) => {
-  if (typeof arg === "string") {
-    return { value: arg.toUpperCase() };
-  }
-  return { value: arg.toFixed() };
+const getProperty = <T, K extends keyof T>(obj: T, key: K) => {
+  return obj[key];
 };
 
-// const foo1 = foo<string>("");
-// const foo2 = foo(0);
-// const foo3 = foo([false]);
+const setProperty = <T, K extends keyof T>(obj: T, key: K, value: T[K]) => {
+  obj[key] = value;
+};
+
+const obj = {
+  foo: 1,
+  bar: 2,
+  baz: 3,
+};
+
+const hoge = getProperty(obj, "baz");
+
+setProperty(obj, "bar", 100);
