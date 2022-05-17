@@ -1,20 +1,20 @@
-export type User = {
-  name: string;
-} & PersonalData;
+type UserA = { name: string; lang: "ja" };
+type UserB = { name: string; lang: "en" };
 
-const foo = {
-  height: 200,
-  weight: 75,
+// ユーザ定義のタイプガード
+const isUserA = (user: UserA | UserB): user is UserA => {
+  return user.lang === "ja";
 };
 
-type PersonalData = {
-  // height: number;
-  // weight: number;
-  [K in keyof typeof foo]?: number;
+const isUserB = (user: UserA | UserB): user is UserB => {
+  return user.lang === "en";
 };
 
-const user: User = {
-  name: "たいせい",
-  height: 185,
-  weight: 75,
-};
+const users: (UserA | UserB)[] = [
+  { name: "たなか", lang: "ja" },
+  { name: "やまだ", lang: "ja" },
+  { name: "ジョニー", lang: "en" },
+];
+
+export const japanese = users.filter(isUserA);
+const notJapanese = users.filter(isUserB);
