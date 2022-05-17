@@ -1,11 +1,10 @@
-export type Foo<T extends string | number = string> = {
-  value: T;
+const foo = <T extends string | number>(arg: T) => {
+  if (typeof arg === "string") {
+    return { value: arg.toUpperCase() };
+  }
+  return { value: arg.toFixed() };
 };
 
-const foo1: Foo<string> = {
-  value: "",
-};
-
-const foo2: Foo<number> = {
-  value: 123,
-};
+// const foo1 = foo<string>("");
+// const foo2 = foo(0);
+// const foo3 = foo([false]);
