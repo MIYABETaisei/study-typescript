@@ -1,1 +1,13 @@
-const foo = [1, 2, 3].map((v) => v);
+type Props = {
+  id: string;
+  name: string;
+  age: number;
+};
+
+type Filter<T, U> = {
+  [K in keyof T]: T[K] extends U ? K : never;
+}[keyof T];
+
+type StringKeys = Filter<Props, string>;
+type NumberKeys = Filter<Props, number>;
+type BooleanKeys = Filter<Props, boolean>;
