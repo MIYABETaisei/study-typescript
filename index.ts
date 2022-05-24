@@ -1,14 +1,15 @@
-type Foo = Extract<string | number, string>;
+import type { PartialDeep } from "type-fest";
+type User = {
+  name: string;
+  age: number | null;
+  address: {
+    country?: "US" | "UK" | "JP";
+  };
+};
 
-// type User = {
-//   name: string;
-//   age: number | null;
-//   country?: "US" | "UK" | "JP";
-// };
+type PartialUser = PartialDeep<User>;
 
-// type OmitUser = Omit<User, "age">;
-
-// const user: OmitUser = {
-//   name: "たいせい",
-//   country: "JP",
-// };
+const user: PartialUser = {
+  name: "たいせい",
+  address: {},
+};
